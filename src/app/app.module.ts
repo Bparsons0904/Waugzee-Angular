@@ -5,9 +5,10 @@ import { AppComponent } from './app.component';
 
 // Angular Material Modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FullMaterialModule} from './material-module';
 
 // Firebase Modules
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule, FirebaseOptionsToken } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -22,6 +23,17 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 // - https://github.com/RaphaelJenni/FirebaseUI-Angular/issues/76
 // the plugin exposes the two libraries as well. You can use those:
 import {FirebaseUIModule, firebase, firebaseui} from 'firebaseui-angular';
+
+// Webpages
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { NotfoundComponent } from './components/notfound/notfound.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+
+// Services
+import { AuthService } from './services/auth.service';
+
+// Models
 
 const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -56,7 +68,11 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    LoginComponent,
+    NotfoundComponent,
+    NavBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,8 +82,11 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
+    AngularFireAuthModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+    FullMaterialModule,
   ],
-  providers: [],
+  providers: [{ provide: FirebaseOptionsToken, useValue: environment.firebase }, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,32 @@
+<p>
+  nav-bar works!
+</p>
+<ul class="navbar-nav ml-auto">
+  <!-- <li *ngIf="!isLoggedIn && showRegister" routerLink="/register" class="nav-item">
+  <a data-toggle="collapse" data-target="#navbarMain"class="nav-link">Register</a>
+</li> -->
+  <li *ngIf="!isLoggedIn" routerLink="/login" class="nav-item">
+    <a data-toggle="collapse" data-target="#navbarMain" class="nav-link">Login</a>
+  </li>
+  <!-- <li *ngIf="isLoggedIn"class="nav-item">
+  <a href="#" class="nav-link" data-toggle="collapse" data-target="#navbarMain">{{ loggedInUser }}</a>
+</li> -->
+  <!-- <li *ngIf="isLoggedIn" routerLink="/profile" class="nav-item">
+    <a data-toggle="collapse" data-target="#navbarMain" class="nav-link">Profile</a>
+  </li> -->
+  <li *ngIf="isLoggedIn" class="nav-item" (click)="onLogoutClick()">
+    <a data-toggle="collapse" data-target="#navbarMain" href="#" class="nav-link">Logout</a>
+  </li>
+  <!-- <li routerLink="/profile"class="nav-item">
+  <a data-toggle="collapse" data-target="#navbarMain" class="nav-link">Profile</a>
+</li> -->
+  <!-- <li class="nav-item" (click)="onLogoutClick()">
+  <a data-toggle="collapse" data-target="#navbarMain" href="#"  class="nav-link">Logout</a>
+</li> -->
+</ul>
+
+<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Item 1</button>
+  <button mat-menu-item>Item 2</button>
+</mat-menu>
